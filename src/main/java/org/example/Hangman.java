@@ -26,10 +26,25 @@ public class Hangman {
 
     private void startGame(){
         replay = "";
-        String[] Wordlist = {"fun", "random", "brown", "football", "outside", "computer",
+        String[] wordList = {"fun", "random", "brown", "football", "outside", "computer",
                 "basketball", "rain", "europe", "america", "hot", "food", "cool", "ice",
                 "body", "person"};
-        Random WordChoice = new Random();
-        String Word = Wordlist[WordChoice.nextInt(Wordlist.length)];
+        Random wordChoice = new Random();
+        String word = wordList[wordChoice.nextInt(wordList.length)];
+
+        this.printStart(word);
+    }
+
+    private void printStart(String word){
+        // Welcoming and introduction
+        System.out.println("Welcome to hangman.");
+        String newWord = letterInWord();
+        System.out.println("The chosen word is a length of " + word.length() + " long.");
+        System.out.println("Type a letter to guess! Good luck.");
+    }
+
+    public static String letterInWord(){
+
+        return null;
     }
 }
