@@ -33,14 +33,15 @@ public class Hangman {
         String word = wordList[wordChoice.nextInt(wordList.length)];
         int chances = 6;
         String hiddenWord = hiddenWords(word);
+        String insertLetter = "_";
 
-        this.printStart(word, hiddenWord);
+        this.printStart(word, hiddenWord, insertLetter);
     }
 
-    private void printStart(String word, String hiddenWord){
+    private void printStart(String word, String hiddenWord, String insertLetter){
         // Welcoming and introduction
         System.out.println("Welcome to hangman.");
-        String newWord = letterInWord();
+        String newWord = letterInWord(word, hiddenWord, insertLetter);
         hiddenWord = newWord;
         System.out.println("The chosen word is a length of " + word.length() + " long.");
         System.out.println(hiddenWord);
@@ -58,14 +59,43 @@ public class Hangman {
             temp[i] = '*';
         }
 
-        String guessedLetterInWord = new String(temp);
+        String asteriskWord = new String(temp);
 
-        return guessedLetterInWord;
+        return asteriskWord;
     }
 
-    public static String letterInWord(){
+    public static String letterInWord(String word, String wordOld, String insertLetter){
+        char[] temp = new char[word.length()];
 
-        return null;
+        for (int i = 0; i < word.length(); i++){
+            temp[i] = word.charAt(i);
+        }
+
+        String insertLetterUpper = insertLetter.toUpperCase();
+
+        for (int i = 0; i<word.length(); i++){
+            if (insertLetterUpper.charAt(0) == word.charAt(i) && wordOld.charAt(i) == '*' ){
+                temp[i] = insertLetterUpper.charAt(0);
+            } else if (wordOld.charAt(i) == '*' ){
+                temp[i] = '*';
+            }
+        }
+
+        for (int i = 0; i<word.length(); i++){
+            if (insertLetter.toLowerCase().charAt(0) == word.charAt(i) && wordOld.charAt(i) == '*' ){
+                if (insertLetter.charAt(0) >= 'a' && insertLetter.charAt(0) <= 'z' ){
+                    temp[i] = (char) (insertLetter.charAt(0) - 32);
+                } else {
+                    temp[i] = (char) (insertLetter.charAt(0));
+                }
+            } else if (wordOld.charAt(i) == '*'){
+                temp[i] = '*';
+            }
+        }
+
+        String wordNow = new String(temp);
+
+        return wordNow;
     }
 
 
