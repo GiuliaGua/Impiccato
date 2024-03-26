@@ -37,10 +37,28 @@ public class Hangman {
         String lettersGuessed = "";
         boolean wordDone = false;
 
-        this.printStart(word, hiddenWord, insertLetter);
+        Scanner start = new Scanner( System.in );
+        Scanner answer = new Scanner( System.in );
+
+        this.printStart(word,
+                        hiddenWord,
+                        insertLetter,
+                        chances,
+                        wordDone,
+                        lettersGuessed,
+                        start,
+                        answer);
     }
 
-    private void printStart(String word, String hiddenWord, String insertLetter){
+    private void printStart(String word,
+                            String hiddenWord,
+                            String insertLetter,
+                            int chances,
+                            boolean wordDone,
+                            String lettersGuessed,
+                            Scanner start,
+                            Scanner answer){
+
         // Welcoming and introduction
         System.out.println("Welcome to hangman.");
         String newWord = letterInWord(word, hiddenWord, insertLetter);
@@ -48,7 +66,61 @@ public class Hangman {
         System.out.println("The chosen word is a length of " + word.length() + " long.");
         System.out.println(hiddenWord);
         System.out.println("Type a letter to guess! Good luck.");
+
+
+        while (wordDone == false){
+            insertLetter = answer.nextLine();
+            System.out.println();
+
+            if (!alreadyGuessed(lettersGuessed, insertLetter)){
+                lettersGuessed += insertLetter + ", ";
+
+
+                if (isLetterInWord(insertLetter, word ) == true){
+                    System.out.println("Good job! The letter " + insertLetter + " was in the word.");
+                    newWord = letterInWord(word, hiddenWord, insertLetter);
+                    hiddenWord = newWord;
+                    System.out.println("Guess another letter. You still have " + chances + " chances remaining.");
+                    System.out.println("The letters you have guessed are: ");
+                    System.out.println(lettersGuessed.substring( 0, lettersGuessed.length()-2) + ".");
+                    System.out.println(hiddenWord);
+                    wordDone = isWordDone(word, newWord);
+                } else {
+                    System.out.println("Sorry the letter " + insertLetter + " is not in the word.");
+
+                    chances = chances - 1;
+
+                    // Quando il giocatore fails
+                    while (chances <= 0){
+                        System.out.println("Sorry you are out of tries. Would you like to replay(Yes/No)[Y,N]: ");
+                        replay = start.nextLine();
+                        if (replay.equalsIgnoreCase("Yes")){
+                            wordDone = true;
+                            break;
+                        } else if (replay.equalsIgnoreCase("No")){
+                            System.out.println("Goodbye.");
+                            System.exit(0);
+                        }
+                    }
+
+                    if (wordDone == false){
+                        System.out.println("Try again. You have " + chances + " remaining.");
+                        wordDone = isWordDone(word, newWord);
+                        System.out.println("The letters you have guessed are: ");
+                        System.out.println(lettersGuessed.substring( 0, lettersGuessed.length()-2) + ".");
+                        System.out.println(hiddenWord);
+                        System.out.println();
+                        System.out.print("Enter another letter: ");
+                    }
+                }
+            } else {
+                System.out.println("Please enter a letter you haven't guessed: ");
+                System.out.println("The letters you have guessed are: ");
+                System.out.println(lettersGuessed.substring( 0, lettersGuessed.length()-2) + ".");
+            }
+        }
     }
+
 
     public static String hiddenWords(String word){
         char[] temp = new char[word.length()];
