@@ -35,6 +35,7 @@ public class Hangman {
         String hiddenWord = hiddenWords(word);
         String insertLetter = "_";
         String lettersGuessed = "";
+        boolean wordDone = false;
 
         this.printStart(word, hiddenWord, insertLetter);
     }
@@ -114,7 +115,7 @@ public class Hangman {
         return letterInWord;
     }
 
-    public static boolean alreadyGuessed(String guessed, String letterGuessing ){
+    public static boolean alreadyGuessed(String guessed, String letterGuessing){
         char letter = letterGuessing.charAt(0);
         for (int i = 0; i < guessed.length(); i++) {
             if (guessed.charAt(i) == letter || guessed.charAt(i) + 32 == letter){
@@ -122,6 +123,14 @@ public class Hangman {
             }
         }
         return false;
+    }
+
+    public static boolean isWordDone(String word, String wordString){
+        boolean wordDone = false;
+        if (word.equalsIgnoreCase(wordString)){
+            wordDone = true;
+        }
+        return wordDone;
     }
 
 
