@@ -132,7 +132,7 @@ public class Hangman {
 
     }
 
-
+    // setta la parola con gli asterischi
     public static String hiddenWords(String word){
         char[] temp = new char[word.length()];
 
@@ -149,6 +149,7 @@ public class Hangman {
         return asteriskWord;
     }
 
+    //place la lettera nella parola nascosta
     public static String letterInWord(String word, String wordOld, String insertLetter){
         char[] temp = new char[word.length()];
 
@@ -183,6 +184,7 @@ public class Hangman {
         return wordNow;
     }
 
+    // controlla se la lettera è nella parola
     public static boolean isLetterInWord(String insertLetter, String word){
         boolean letterInWord = false;
         int i = 0;
@@ -198,6 +200,7 @@ public class Hangman {
         return letterInWord;
     }
 
+    //controllo se la lettera che si vuole indovinare è già stata indovinata
     public static boolean alreadyGuessed(String guessed, String letterGuessing){
         char letter = letterGuessing.charAt(0);
         for (int i = 0; i < guessed.length(); i++) {
