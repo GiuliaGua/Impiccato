@@ -119,6 +119,17 @@ public class Hangman {
                 System.out.println(lettersGuessed.substring( 0, lettersGuessed.length()-2) + ".");
             }
         }
+
+
+        System.out.println("\nGood Job! Would you like to play again?");
+        replay = start.nextLine();
+        if (replay.equalsIgnoreCase("Yes") ){
+            game = true;
+        }
+        if (replay.equalsIgnoreCase("No") ){
+            System.exit(0);
+        }
+
     }
 
 
