@@ -34,6 +34,7 @@ public class Hangman {
         int chances = 6;
         String hiddenWord = hiddenWords(word);
         String insertLetter = "_";
+        String lettersGuessed = "";
 
         this.printStart(word, hiddenWord, insertLetter);
     }
@@ -111,6 +112,16 @@ public class Hangman {
             i = i + 1;
         }
         return letterInWord;
+    }
+
+    public static boolean alreadyGuessed(String guessed, String letterGuessing ){
+        char letter = letterGuessing.charAt(0);
+        for (int i = 0; i < guessed.length(); i++) {
+            if (guessed.charAt(i) == letter || guessed.charAt(i) + 32 == letter){
+                return true;
+            }
+        }
+        return false;
     }
 
 
