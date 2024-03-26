@@ -98,5 +98,20 @@ public class Hangman {
         return wordNow;
     }
 
+    public static boolean isLetterInWord(String insertLetter, String word){
+        boolean letterInWord = false;
+        int i = 0;
+        String currentLetter;
+
+        while (i < word.length()){
+            currentLetter = word.substring(i, i + 1 );
+            if (insertLetter.equalsIgnoreCase(currentLetter)){
+                letterInWord = true;
+            }
+            i = i + 1;
+        }
+        return letterInWord;
+    }
+
 
 }
