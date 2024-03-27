@@ -86,7 +86,7 @@ public class Hangman {
 
         // Welcoming and introduction
         System.out.println("Welcome to hangman.");
-        String newWord = letterInWord(word, tmpHiddenWord, tmpInsertLetter);
+        String newWord = letterInWord(word, tmpHiddenWord, tmpInsertLetter, chances);
         tmpHiddenWord = newWord;
         System.out.println("The chosen word is a length of "
                 + word.length() + " long.");
@@ -104,7 +104,7 @@ public class Hangman {
                     System.out.println("Good job! The letter "
                             + tmpInsertLetter + " was in the word.");
                     newWord = letterInWord(word, tmpHiddenWord,
-                            tmpInsertLetter);
+                            tmpInsertLetter, chances);
                     tmpHiddenWord = newWord;
                     System.out.println("Guess another letter. You still have "
                             + chances + " chances remaining.");
@@ -121,6 +121,7 @@ public class Hangman {
 
                     // Quando il giocatore fails
                     while (chances <= 0) {
+                        chooseHangMan(chances);
                         System.out.println("\nSorry you are out of tries.");
                         System.out.println("       ! You lost !        ");
                         System.out.println("     -> Goodbye... <-      ");
@@ -135,6 +136,7 @@ public class Hangman {
                         System.out.println("The letters you have guessed are:");
                         System.out.println(tmpLettersGuessed.substring(0,
                                 tmpLettersGuessed.length() - 2) + ".");
+                        chooseHangMan(chances);
                         System.out.println(tmpHiddenWord);
                         System.out.println();
                         System.out.print("Enter another letter: ");
@@ -191,8 +193,11 @@ public class Hangman {
      */
     public static String letterInWord(final String word,
                                       final String wordOld,
-                                      final String insertLetter) {
+                                      final String insertLetter,
+                                      int chances) {
         char[] temp = new char[word.length()];
+
+        chooseHangMan(chances);
 
         for (int i = 0; i < word.length(); i++) {
             temp[i] = word.charAt(i);
@@ -281,6 +286,88 @@ public class Hangman {
             wordDone = true;
         }
         return wordDone;
+    }
+
+    private static void hangMan() {
+        System.out.println("        _______    ");
+        System.out.println("     __|           ");
+        System.out.println("    |              ");
+        System.out.println("   |               ");
+        System.out.println(" __|__             ");
+    }
+
+    private static void hangMan1() {
+        System.out.println("        _______    ");
+        System.out.println("     __|     ( )   ");
+        System.out.println("    |              ");
+        System.out.println("   |               ");
+        System.out.println(" __|__             ");
+    }
+
+    private static void hangMan2() {
+        System.out.println("        _______    ");
+        System.out.println("     __|     ( )   ");
+        System.out.println("    |         |    ");
+        System.out.println("   |               ");
+        System.out.println(" __|__             ");
+    }
+
+    private static void hangMan3() {
+        System.out.println("        _______    ");
+        System.out.println("     __|     ( )   ");
+        System.out.println("    |         |    ");
+        System.out.println("   |         /     ");
+        System.out.println(" __|__             ");
+    }
+
+    private static void hangMan4() {
+        System.out.println("        _______    ");
+        System.out.println("     __|     ( )   ");
+        System.out.println("    |         |    ");
+        System.out.println("   |         / \\  ");
+        System.out.println(" __|__             ");
+    }
+
+    private static void hangMan5() {
+        System.out.println("        _______    ");
+        System.out.println("     __|     ( )   ");
+        System.out.println("    |        /|    ");
+        System.out.println("   |         / \\  ");
+        System.out.println(" __|__             ");
+    }
+
+    private static void hangMan6() {
+        System.out.println("        _______    ");
+        System.out.println("     __|     ( )   ");
+        System.out.println("    |        /|\\  ");
+        System.out.println("   |         / \\  ");
+        System.out.println(" __|__             ");
+    }
+
+    private static void chooseHangMan(int choice) {
+        switch(choice) {
+            case 6:
+                hangMan();
+                break;
+            case 5:
+                hangMan1();
+                break;
+            case 4:
+                hangMan2();
+                break;
+            case 3:
+                hangMan3();
+                break;
+            case 2:
+                hangMan4();
+                break;
+            case 1:
+                hangMan5();
+                break;
+            case 0:
+                hangMan6();
+                break;
+        }
     }
 
 }
