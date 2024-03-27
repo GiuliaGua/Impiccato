@@ -121,16 +121,10 @@ public class Hangman {
 
                     // Quando il giocatore fails
                     while (chances <= 0) {
-                        System.out.println("Sorry you are out of tries."
-                                + " Would you like to replay[Yes,No]:");
-                        replay = start.nextLine();
-                        if (replay.equalsIgnoreCase("Yes")) {
-                            tmpWordDone = true;
-                            break;
-                        } else if (replay.equalsIgnoreCase("No")) {
-                            System.out.println("Goodbye.");
-                            System.exit(0);
-                        }
+                        System.out.println("\nSorry you are out of tries.");
+                        System.out.println("       ! You lost !        ");
+                        System.out.println("     -> Goodbye... <-      ");
+                        System.exit(0);
                     }
 
                     if (!tmpWordDone) {
