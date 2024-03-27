@@ -31,6 +31,21 @@ public class Hangman {
     private static final int SEI = 6;
 
     /**
+     * variabile magic number.
+     */
+    private static final int CINQUE = 5;
+
+    /**
+     * variabile magic number.
+     */
+    private static final int QUATTRO = 4;
+
+    /**
+     * variabile magic number.
+     */
+    private static final int TRE = 3;
+
+    /**
      * variabile chances.
      */
     private int chances = SEI;
@@ -86,7 +101,8 @@ public class Hangman {
 
         // Welcoming and introduction
         System.out.println("Welcome to hangman.");
-        String newWord = letterInWord(word, tmpHiddenWord, tmpInsertLetter, chances);
+        String newWord = letterInWord(word, tmpHiddenWord,
+                tmpInsertLetter, chances);
         tmpHiddenWord = newWord;
         System.out.println("The chosen word is a length of "
                 + word.length() + " long.");
@@ -189,12 +205,13 @@ public class Hangman {
      * @param word
      * @param wordOld
      * @param insertLetter
+     * @param chances
      * @return stringa
      */
     public static String letterInWord(final String word,
                                       final String wordOld,
                                       final String insertLetter,
-                                      int chances) {
+                                      final int chances) {
         char[] temp = new char[word.length()];
 
         chooseHangMan(chances);
@@ -344,18 +361,18 @@ public class Hangman {
         System.out.println(" __|__             ");
     }
 
-    private static void chooseHangMan(int choice) {
-        switch(choice) {
-            case 6:
+    private static void chooseHangMan(final int choice) {
+        switch (choice) {
+            case SEI:
                 hangMan();
                 break;
-            case 5:
+            case CINQUE:
                 hangMan1();
                 break;
-            case 4:
+            case QUATTRO:
                 hangMan2();
                 break;
-            case 3:
+            case TRE:
                 hangMan3();
                 break;
             case 2:
@@ -366,6 +383,8 @@ public class Hangman {
                 break;
             case 0:
                 hangMan6();
+                break;
+            default:
                 break;
         }
     }
