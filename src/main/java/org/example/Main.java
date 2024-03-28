@@ -8,7 +8,7 @@ public final class Main {
      * @param args
      */
     public static void main(final String[] args) {
-        Hangman startHangman = new Hangman();
+        new Hangman();
     }
 
     /**

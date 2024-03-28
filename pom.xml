@@ -22,6 +22,8 @@
                 <version>4.8.2.0</version>
                 <configuration>
 
+                    <includeFilterFile>include-category-spotbugs.xml</includeFilterFile>
+
                     <plugins>
                         <plugin>
                             <groupId>com.h3xstream.findsecbugs</groupId>

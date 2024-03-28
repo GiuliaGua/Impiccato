@@ -3,8 +3,8 @@ package org.example;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Random;
 import java.util.Scanner;
+import java.security.SecureRandom;
 
 @Getter
 @Setter
@@ -51,6 +51,11 @@ public class Hangman {
     private int chances = SEI;
 
     /**
+     * variabile secure random per spotbugs category secutiry.
+     */
+    private final SecureRandom wordChoice = new SecureRandom();
+
+    /**
      * inizio del game.
      */
     public Hangman() {
@@ -68,7 +73,6 @@ public class Hangman {
         String[] wordList = {"fun", "random", "brown", "football", "outside",
                 "computer", "basketball", "rain", "europe", "america", "hot",
                 "food", "cool", "ice", "body", "person"};
-        Random wordChoice = new Random();
         String word = wordList[wordChoice.nextInt(wordList.length)];
         String hiddenWord = hiddenWords(word);
         String insertLetter = "_";
