@@ -7,7 +7,7 @@ LABEL authors="Giulia"
 WORKDIR /app
 
 #esegue Maven per compilare il progetto Java all'interno del container Docker
-RUN ["/usr/local/bin/mvn-entrypoint.sh", "mvn", "package", "clean", "--fail-never"]
+RUN ["/usr/local/bin/mvn-entrypoint.sh", "mvn", "package", "clean"]
 
 #copio il progetto locale in app
 COPY . /app
