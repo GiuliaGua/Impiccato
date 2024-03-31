@@ -31,3 +31,12 @@ jobs:
 
       - name: Run Tests
         run: mvn test
+
+      - name: Build Docker images with Docker Compose
+        run: docker-compose build
+
+      - name: Start services with Docker Compose
+        run: docker-compose up -d
+
+      - name: Stop services with Docker Compose
+        run: docker-compose down
