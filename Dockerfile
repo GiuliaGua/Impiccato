@@ -1,5 +1,5 @@
 #immagine di base da cui costruire l'immagine docker
-FROM maven:3.6.3-adoptopenjdk-11
+FROM maven:3.6.3-adoptopenjdk-21
 
 LABEL authors="Giulia"
 
@@ -12,7 +12,7 @@ RUN ["/usr/local/bin/mvn-entrypoint.sh", "mvn", "package", "clean"]
 #copio il progetto locale in app
 COPY . /app
 
-FROM openjdk:11
+FROM openjdk:21
 
 COPY target/HangmanASD-1.0-SNAPSHOT.jar /app/target/HangmanASD-1.0-SNAPSHOT.jar
 
